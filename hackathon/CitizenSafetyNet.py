@@ -6,8 +6,8 @@ import os
 import json
 import requests
 
-hackathon = Flask(__name__)
-hackathon.config['SECRET_KEY'] = 'your_secret_key'
+CitizenSafetyNet = Flask(__name__)
+CitizenSafetyNet.config['SECRET_KEY'] = 'your_secret_key'
 
 
 def is_internet_available():
@@ -112,13 +112,13 @@ class IncidentReportForm(FlaskForm):
     description = TextAreaField('Description')
 
 
-@hackathon.route('/')
+@CitizenSafetyNet.route('/')
 def index():
     form = IncidentReportForm()
     return render_template('incident_form.html', form=form)
 
 
-@hackathon.route('/submit_report', methods=['POST'])
+@CitizenSafetyNet.route('/submit_report', methods=['POST'])
 def submit_report():
     form = IncidentReportForm()
     if form.validate_on_submit():
@@ -151,18 +151,18 @@ def submit_report():
     return jsonify({'success': False, 'errors': form.errors})
 
 
-@hackathon.route('/report.html')
+@CitizenSafetyNet.route('/report.html')
 def report():
     return render_template('report.html')
 
-@hackathon.route('/homepage.html')
+@CitizenSafetyNet.route('/homepage.html')
 def homepage():
     return render_template('homepage.html')
 
-@hackathon.route('/incident_form.html')
+@CitizenSafetyNet.route('/incident_form.html')
 def incident_form():
     return render_template('incident_form.html')
 
 
 if __name__ == '__main__':
-    hackathon.run(debug=True)
+    CitizenSafetyNet.run(debug=True)
