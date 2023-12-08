@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Report Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Incident Report Result</h1>
+    
+    <p><strong>Incident Type:</strong> {{ incident.incident_type }}</p>
+    <p><strong>Severity:</strong> {{ incident.severity }}</p>
+    <p><strong>Comments:</strong> {{ incident.comments }}</p>
+    <p><strong>Location:</strong> {{ incident.location }}</p>
+    
+    <p><strong>Predicted Risk Level:</strong> {{ risk_level }}</p>
+    
+    <a href="/">Back to Home</a>
+</body>
+</html>

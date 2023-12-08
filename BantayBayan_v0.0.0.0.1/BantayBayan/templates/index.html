@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Response Network</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+    
+        socket.on('new_incident', function(msg) {
+            
+            var table = document.getElementById("incident-table");
+            var row = table.insertRow(1);  
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            cell1.innerHTML = msg.incident.id;
+            cell2.innerHTML = msg.incident.type;
+            cell3.innerHTML = msg.incident.location;
+            cell4.innerHTML = msg.incident.comments;
+        });
+
+        
+        function clearTable() {
+            var table = document.getElementById("incident-table");
+            var rowCount = table.rows.length;
+           
+            for (var i = rowCount - 1; i > 0; i--) {
+                table.deleteRow(i);
+            }
+        }
+    </script>
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <div class="header-wrapper">
+        <header class="header-container">
+            <div class="logo">
+            <img src="bblogort.png" alt="Bantay Bayan Logo">
+            </div>
+            <div class="title">
+                <h1>Bantay Bayan</h1>
+                <p>Barangay to Barangay Incident Reporter</p>
+            </div>
+        </header>
+    </div> 
+    <div class="container">
+        <form action="/report_incident" method="post">
+            <label for="incident_type">Incident Type:</label>
+            <input type="text" name="incident_type" required><br>
+        
+            <label for="severity">Location:</label>
+            <input type="text" name="location" required><br>
+        
+            <label for="comments">Additional Information:</label>
+            <textarea name="comments" rows="4" cols="50"></textarea><br>
+        
+            <button type="submit" onclick="alert('Form Submitted! Your Barangay has been informed of this incident. Please wait while a representative will arrive shortly at your location. ');">Submit</button>
+
+        </form>
+    </div>
+    <div class="result-container">
+    <div class="container">
+    <table border="1" id="incident-table">
+        <tr>
+            <th>ID</th>
+            <th>Incident Type</th>
+            <th>Location</th>
+            <th>Additional Information</th>
+        </tr>
+        {% for incident in incidents %}
+        <tr>
+            <td>{{ incident.id }}</td>
+            <td>{{ incident.incident_type }}</td>
+            <td>{{ incident.location }}</td>
+            <td>{{ incident.comments }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    
+    <button onclick="clearTable()">Clear Table</button>
+    </div>
+    </div>
+</body>
+</html>
