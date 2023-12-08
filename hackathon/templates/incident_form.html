@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Report</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <h1>Incident Report</h1>
+    <form action="{{ url_for('submit_report') }}" method="POST">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <label for="incident_type">Incident Type</label>
+            {{ form.incident_type }}
+        </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            {{ form.date(id="date", class="flatpickr") }}
+        </div>
+        <div class="form-group">
+            <label for="time">Time</label>
+            {{ form.time(id="time", class="flatpickr") }}
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            {{ form.location }}
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            {{ form.description }}
+        </div>
+        <button type="submit">Submit Report</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#date");
+        flatpickr("#time", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+        });
+    </script>
+</body>
+</html>
