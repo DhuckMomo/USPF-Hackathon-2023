@@ -166,4 +166,5 @@ def incident_form():
 
 
 if __name__ == '__main__':
-    cs23.run(debug=True)
+    #cs23.run(debug=True)
+    cs23.run(host='0.0.0.0', port=5000, debug=True)
