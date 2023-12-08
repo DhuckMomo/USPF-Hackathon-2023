@@ -57,7 +57,7 @@ def submit_report():
         incident_data = {
             'incident_type': form.incident_type.data,
             'date_time': date_time,
-            'location': form.location.data,
+            'city': form.city.data,
             'barangay': form.barangay.data,
             'description': form.description.data
         }

@@ -99,6 +99,6 @@ class IncidentReportForm(FlaskForm):
     incident_type = SelectField('Incident Type', choices=[('fire', 'Fire'), ('accident', 'Accident'), ('medical', 'Medical Emergency')])
     date = DateField('Date')
     time = TimeField('Time')
-    location = StringField('Location')
+    city = SelectField('City', choices=[('cebu', 'Cebu City')])
     barangay = SelectField('Barangay', choices=BARANGAY_CHOICES, default=None)
     description = TextAreaField('Description')
