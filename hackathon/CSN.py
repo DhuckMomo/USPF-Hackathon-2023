@@ -6,8 +6,9 @@ import os
 import json
 import requests
 
-CitizenSafetyNet = Flask(__name__)
-CitizenSafetyNet.config['SECRET_KEY'] = 'your_secret_key'
+#CitizenSafetyNet
+CSN = Flask(__name__)
+CSN.config['SECRET_KEY'] = 'your_secret_key'
 
 
 def is_internet_available():
@@ -112,13 +113,13 @@ class IncidentReportForm(FlaskForm):
     description = TextAreaField('Description')
 
 
-@CitizenSafetyNet.route('/')
+@CSN.route('/')
 def index():
     form = IncidentReportForm()
     return render_template('incident_form.html', form=form)
 
 
-@CitizenSafetyNet.route('/submit_report', methods=['POST'])
+@CSN.route('/submit_report', methods=['POST'])
 def submit_report():
     form = IncidentReportForm()
     if form.validate_on_submit():
@@ -151,18 +152,18 @@ def submit_report():
     return jsonify({'success': False, 'errors': form.errors})
 
 
-@CitizenSafetyNet.route('/report.html')
+@CSN.route('/report.html')
 def report():
     return render_template('report.html')
 
-@CitizenSafetyNet.route('/homepage.html')
+@CSN.route('/homepage.html')
 def homepage():
     return render_template('homepage.html')
 
-@CitizenSafetyNet.route('/incident_form.html')
+@CSN.route('/incident_form.html')
 def incident_form():
     return render_template('incident_form.html')
 
 
 if __name__ == '__main__':
-    CitizenSafetyNet.run(debug=True)
+    CSN.run(debug=True)
