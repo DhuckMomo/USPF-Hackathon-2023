@@ -6,27 +6,148 @@
     <title>Incident Report</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+      }
+
+      .navbar {
+          background-color: #333;
+          color: white;
+          text-align: center;
+          padding: 15px;
+      }
+
+      .navbar a {
+          color: white;
+          padding: 14px 16px;
+          text-decoration: none;
+          display: inline-block;
+      }
+
+      .navbar h1 {
+          margin-top: 10px;
+          text-align: left;
+          display: inline-block;
+      }
+
+      .form-container {
+          padding: 20px;
+      }
+
+      form {
+          opacity: 0.9;
+          text-align: left;
+      }
+
+      label {
+          display: block;
+          margin-bottom: 8px;
+      }
+
+      .form-group {
+          margin-bottom: 20px;
+      }
+
+      button {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          cursor: pointer;
+      }
+
+      button:hover {
+          background-color: #45a049;
+      }
+
+      .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .home-content {
+            text-align: center;
+            margin: 50px;
+        }
+
+        .home-content h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .home-content p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .cta-section {
+            background-color: #007bff;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .cta-section h3 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .cta-section a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #0056b3;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-section a:hover {
+            background-color: #004080;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    
 
-        <div class="navbar">
-        <a name="back-to-top"></a>
-        <ul>
-            
-          <h1 style="margin-top: 10px; text-align: left;"><a href="homepage.html" style="color:WHITE; display: inline-block;"> Incident <a href="#" style="color:red; display: inline-block;"> Report</a></a></h1>
-
+<div class="navbar">
+    <a name="back-to-top"></a>
+    <h1>
+        <a href="homepage.html" style="color: white; text-decoration: none;">Incident <span style="color: red;">Report</span></a>
+    </h1>
+    <ul>
         <li><a href="homepage.html">HOME</a></li>
         <li><a href="report.html">REPORTS</a></li>
-        <li><a href="#contact">ABOUT US</a></li>
-        </div>
-        
-        
-        &emsp;
-        
-        &emsp;
-        
-        
-        
-        <div style="padding-left:20px">
+        <li><a href="incident_form.html">ABOUT US</a></li>
+    </ul>
+</div>
+
+<div class="home-content">
+  <h2>Welcome to Incident Report System</h2>
+  <p>Report incidents quickly and easily. Your safety is our priority.</p>
+</div>
+</div>
+
+<div class="cta-section">
+<h3>Ready to report an incident?</h3>
+<p>Use our quick and secure reporting system.</p>
+<a href="incident_form.html">Submit an Incident Report</a>
+</div>
             
+
+        </body>
+        </html>

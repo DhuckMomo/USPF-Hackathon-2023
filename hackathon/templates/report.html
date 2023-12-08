@@ -6,27 +6,84 @@
     <title>Incident Report</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+      }
+
+      .navbar {
+          background-color: #333;
+          color: white;
+          text-align: center;
+          padding: 15px;
+      }
+
+      .navbar a {
+          color: white;
+          padding: 14px 16px;
+          text-decoration: none;
+          display: inline-block;
+      }
+
+      .navbar h1 {
+          margin-top: 10px;
+          text-align: left;
+          display: inline-block;
+      }
+
+      .form-container {
+          padding: 20px;
+      }
+
+      form {
+          opacity: 0.9;
+          text-align: left;
+      }
+
+      label {
+          display: block;
+          margin-bottom: 8px;
+      }
+
+      .form-group {
+          margin-bottom: 20px;
+      }
+
+      button {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          cursor: pointer;
+      }
+
+      button:hover {
+          background-color: #45a049;
+      }
+    </style>
 </head>
 <body>
-    
 
-        <div class="navbar">
-        <a name="back-to-top"></a>
-        <ul>
-            
-            <h1 style="margin-top: 10px; text-align: left;"><a href="homepage.html" style="color:WHITE; display: inline-block;"> Incident <a href="#" style="color:red; display: inline-block;"> Report</a></a></h1>
-
+<div class="navbar">
+    <a name="back-to-top"></a>
+    <h1>
+        <a href="homepage.html" style="color: white; text-decoration: none;">Incident <span style="color: red;">Report</span></a>
+    </h1>
+    <ul>
         <li><a href="homepage.html">HOME</a></li>
         <li><a href="report.html">REPORTS</a></li>
         <li><a href="#contact">ABOUT US</a></li>
-        </div>
-        
-        
-        &emsp;
-        
-        &emsp;
+    </ul>
+</div>
+
+<div class="form-container">
         
         
         
         <div style="padding-left:20px">
             
+
+        </body>
+        </html>
