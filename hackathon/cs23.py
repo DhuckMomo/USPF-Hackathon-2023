@@ -1,10 +1,22 @@
 from flask import Flask, render_template, request, jsonify
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SelectField, DateField, TimeField
+from wtforms import StringField, TextAreaField, SelectField, DateField, TimeField, RadioField
 from datetime import datetime
 import os
 import json
 import requests
+
+
+#severity simple AI
+def analyze_severity(severity):
+    severity_messages = {
+        'very_low': "The incident is considered very low severity. It may not require immediate attention.",
+        'low': "The incident is considered low severity. It may not require immediate attention.",
+        'medium': "The incident is of medium severity. Please address it promptly.",
+        'high': "The incident is of high severity. Immediate attention and action are recommended.",
+        'very_high': "The incident is considered very high severity. Immediate action is required.",
+    }
+    return severity_messages.get(severity, "Severity not specified.")
 
 #Cebu Sentinel
 cs23 = Flask(__name__)
@@ -105,6 +117,14 @@ class IncidentReportForm(FlaskForm):
         ('to-ong_pardo', 'TO-ONG PARDO'),
         ('zapatera', 'ZAPATERA'),
     ]
+    SEVERITY_CHOICES = [
+        ('very_low', 'Very Low'),
+        ('low', 'Low'),
+        ('medium', 'Medium'),
+        ('high', 'High'),
+        ('very_high', 'Very High'),
+    ]
+    severity = RadioField('Severity', choices=SEVERITY_CHOICES)
     incident_type = SelectField('Incident Type', choices=[('fire', 'Fire'), ('accident', 'Accident'), ('medical', 'Medical Emergency')])
     date = DateField('Date')
     time = TimeField('Time')
@@ -122,6 +142,7 @@ def index():
 @cs23.route('/submit_report', methods=['POST'])
 def submit_report():
     form = IncidentReportForm()
+    severity_insights = analyze_severity(form.severity.data)
     if form.validate_on_submit():
         try:
             date_time = datetime.combine(form.date.data, form.time.data)
@@ -135,19 +156,20 @@ def submit_report():
             'barangay': form.barangay.data,
             'description': form.description.data
         }
+        
 
         if is_internet_available():
             print("Internet connection is available")
             #  logic for submitting data to server here
             # ...
-            pass
+            return jsonify({'success': True, 'message': 'Incident report submitted successfully.', 'severity_insights': severity_insights})
         else:
             print("No internet connection available")
             with open('incident_data.json', 'a') as f:
                 f.write(json.dumps(incident_data) + '\n')
 
-            # Show message about offline storage
-            return jsonify({'success': True, 'message': 'Incident report saved offline.'})
+            # Show message about offline storage and severity insights
+            return jsonify({'success': True, 'message': 'Incident report saved offline.', 'severity_insights': severity_insights})
 
     return jsonify({'success': False, 'errors': form.errors})
 
