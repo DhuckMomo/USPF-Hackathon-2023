@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Disaster Risk Assessment</title>
+</head>
+<body>
+    <h1>Natural Disaster Risk Assessment Tool</h1>
+    <form action="/" method="post">
+        <label for="location">Location:</label>
+        <select name="location" id="location">
+            <option value="high-risk">High-risk (earthquake, flood zone)</option>
+            <option value="moderate-risk">Moderate-risk (some hazard potential)</option>
+            <option value="low-risk">Low-risk (minimal hazard exposure)</option>
+        </select><br>
+
+        <label for="building_type">Building Type:</label>
+        <select name="building_type" id="building_type">
+            <option value="unreinforced_masonry">Unreinforced Masonry (high vulnerability)</option>
+            <option value="concrete">Concrete (moderate vulnerability)</option>
+            <option value="steel">Steel (low vulnerability)</option>
+        </select><br>
+
+        <label for="building_age">Building Age:</label>
+        <select name="building_age" id="building_age">
+            <option value="pre_1970">Pre-1970 (less resilient to modern standards)</option>
+            <option value="1970-2000">1970-2000 (some improvements in resilience)</option>
+            <option value="post_2000">Post-2000 (built with modern safety standards)</option>
+        </select><br>
+
+        <label for="preparedness_level">Individual Preparedness Level:</label>
+        <select name="preparedness_level" id="preparedness_level">
+            <option value="no_training_kit">No prior training or emergency kit</option>
+            <option value="basic_training_kit">Basic training and emergency kit</option>
+            <option value="advanced_training_kit">Advanced training and comprehensive kit</option>
+        </select><br>
+
+        <input type="submit" value="Assess Natural Disaster Risk">
+    </form>
+
+    {% if risk_percentage %}
+        <h3>Your predicted incident probability: {{ risk_percentage }}%</h3>
+    {% endif %}
+</body>
+</html>
