@@ -151,6 +151,18 @@ def submit_report():
     return jsonify({'success': False, 'errors': form.errors})
 
 
+@app.route('/report.html')
+def report():
+    return render_template('report.html')
+
+@app.route('/homepage.html')
+def homepage():
+    return render_template('homepage.html')
+
+@app.route('/incident_form.html')
+def incident_form():
+    return render_template('incident_form.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
