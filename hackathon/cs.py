@@ -6,9 +6,9 @@ import os
 import json
 import requests
 
-#CitizenSafetyNet
-CSN = Flask(__name__)
-CSN.config['SECRET_KEY'] = 'your_secret_key'
+#Cebu Sentinel
+cs = Flask(__name__)
+cs.config['SECRET_KEY'] = 'your_secret_key'
 
 
 def is_internet_available():
@@ -113,13 +113,13 @@ class IncidentReportForm(FlaskForm):
     description = TextAreaField('Description')
 
 
-@CSN.route('/')
+@cs.route('/')
 def index():
     form = IncidentReportForm()
     return render_template('incident_form.html', form=form)
 
 
-@CSN.route('/submit_report', methods=['POST'])
+@cs.route('/submit_report', methods=['POST'])
 def submit_report():
     form = IncidentReportForm()
     if form.validate_on_submit():
@@ -152,18 +152,18 @@ def submit_report():
     return jsonify({'success': False, 'errors': form.errors})
 
 
-@CSN.route('/report.html')
+@cs.route('/report.html')
 def report():
     return render_template('report.html')
 
-@CSN.route('/homepage.html')
+@cs.route('/homepage.html')
 def homepage():
     return render_template('homepage.html')
 
-@CSN.route('/incident_form.html')
+@cs.route('/incident_form.html')
 def incident_form():
     return render_template('incident_form.html')
 
 
 if __name__ == '__main__':
-    CSN.run(debug=True)
+    cs.run(debug=True)
