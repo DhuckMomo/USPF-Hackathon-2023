@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SelectField, DateField, TimeField, RadioField
 from datetime import datetime
@@ -68,7 +68,7 @@ def submit_report():
             # ...
 
             
-            return redirect(url_for('aftersubmit.html'))
+            return redirect(url_for('aftersubmit'))
         else:
             print("No internet connection available")
             with open('incident_data.json', 'a') as f:
@@ -97,7 +97,7 @@ def incident_form():
 def aboutus():
     return render_template('aboutus.html',)
 
-@app.route('/aftersubmit.html')
+@app.route('/aftersubmit')
 def aftersubmit():
     return render_template('aftersubmit.html')  
 
