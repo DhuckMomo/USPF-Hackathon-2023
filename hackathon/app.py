@@ -61,13 +61,14 @@ def submit_report():
             'barangay': form.barangay.data,
             'description': form.description.data
         }
-        
 
         if is_internet_available():
             print("Internet connection is available")
             #  logic for submitting data to server here
             # ...
-            return jsonify({'success': True, 'message': 'Incident report submitted successfully.', 'severity_insights': severity_insights})
+
+            
+            return redirect(url_for('aftersubmit.html'))
         else:
             print("No internet connection available")
             with open('incident_data.json', 'a') as f:
@@ -92,6 +93,13 @@ def incident_form():
     form = IncidentReportForm()
     return render_template('incident_form.html', form=form)
 
+@app.route('/aboutus.html')
+def aboutus():
+    return render_template('aboutus.html',)
+
+@app.route('/aftersubmit.html')
+def aftersubmit():
+    return render_template('aftersubmit.html')  
 
 if __name__ == '__main__':
     #cs23.run(debug=True)
