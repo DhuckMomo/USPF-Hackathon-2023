@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Response Network</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        // SocketIO event handler for receiving real-time updates
+        socket.on('new_incident', function(msg) {
+            // Add the new incident to the table
+            var table = document.getElementById("incident-table");
+            var row = table.insertRow(1);  // Insert at the second row (after the header)
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            cell1.innerHTML = msg.incident.id;
+            cell2.innerHTML = msg.incident.type;
+            cell3.innerHTML = msg.incident.severity;
+            cell4.innerHTML = msg.incident.comments;
+        });
+
+        // Function to clear the table
+        function clearTable() {
+            var table = document.getElementById("incident-table");
+            var rowCount = table.rows.length;
+            // Start from the second row (index 1) to avoid removing the header
+            for (var i = rowCount - 1; i > 0; i--) {
+                table.deleteRow(i);
+            }
+        }
+    </script>
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Incident Reporting</h1>
+    
+    <form action="/report_incident" method="post">
+        <label for="incident_type">Incident Type:</label>
+        <input type="text" name="incident_type" required><br>
+        
+        <label for="severity">Location:</label>
+        <input type="text" name="severity" required><br>
+        
+        <label for="comments">Additional Information:</label>
+        <textarea name="comments" rows="4" cols="50"></textarea><br>
+        
+        <input type="submit" value="Report Incident">
+    </form>
+
+    <!-- Add a table to display incidents -->
+    <table border="1" id="incident-table">
+        <tr>
+            <th>ID</th>
+            <th>Incident Type</th>
+            <th>Location</th>
+            <th>Additional Information</th>
+        </tr>
+        {% for incident in incidents %}
+        <tr>
+            <td>{{ incident.id }}</td>
+            <td>{{ incident.incident_type }}</td>
+            <td>{{ incident.severity }}</td>
+            <td>{{ incident.comments }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Add a button to clear the table -->
+    <button onclick="clearTable()">Clear Table</button>
+</body>
+</html>

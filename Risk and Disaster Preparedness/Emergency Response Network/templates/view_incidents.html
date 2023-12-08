@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Incidents</title>
+</head>
+<body>
+    <h1>View Incidents</h1>
+    
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Incident Type</th>
+            <th>Severity</th>
+            <th>Comments</th>
+        </tr>
+        {% for incident in incidents %}
+        <tr>
+            <td>{{ incident.id }}</td>
+            <td>{{ incident.incident_type }}</td>
+            <td>{{ incident.severity }}</td>
+            <td>{{ incident.comments }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
