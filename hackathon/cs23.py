@@ -7,8 +7,8 @@ import json
 import requests
 
 #Cebu Sentinel
-cs = Flask(__name__)
-cs.config['SECRET_KEY'] = 'your_secret_key'
+cs23 = Flask(__name__)
+cs23.config['SECRET_KEY'] = 'your_secret_key'
 
 
 def is_internet_available():
@@ -113,13 +113,13 @@ class IncidentReportForm(FlaskForm):
     description = TextAreaField('Description')
 
 
-@cs.route('/')
+@cs23.route('/')
 def index():
     form = IncidentReportForm()
     return render_template('incident_form.html', form=form)
 
 
-@cs.route('/submit_report', methods=['POST'])
+@cs23.route('/submit_report', methods=['POST'])
 def submit_report():
     form = IncidentReportForm()
     if form.validate_on_submit():
@@ -152,18 +152,18 @@ def submit_report():
     return jsonify({'success': False, 'errors': form.errors})
 
 
-@cs.route('/report.html')
+@cs23.route('/report.html')
 def report():
     return render_template('report.html')
 
-@cs.route('/homepage.html')
+@cs23.route('/homepage.html')
 def homepage():
     return render_template('homepage.html')
 
-@cs.route('/incident_form.html')
+@cs23.route('/incident_form.html')
 def incident_form():
     return render_template('incident_form.html')
 
 
 if __name__ == '__main__':
-    cs.run(debug=True)
+    cs23.run(debug=True)
