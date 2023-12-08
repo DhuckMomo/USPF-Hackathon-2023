@@ -97,9 +97,10 @@ def incident_form():
 def aboutus():
     return render_template('aboutus.html',)
 
-@app.route('/aftersubmit')
+@app.route('/aftersubmit.html')
 def aftersubmit():
-    return render_template('aftersubmit.html')  
+    return render_template('aftersubmit.html',)
+
 
 if __name__ == '__main__':
     #cs23.run(debug=True)

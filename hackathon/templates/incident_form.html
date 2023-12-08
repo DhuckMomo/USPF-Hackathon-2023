@@ -35,6 +35,8 @@
 
         .form-container {
             padding: 20px;
+            text-align: center;
+            margin: 0 auto;
         }
 
         form {
@@ -78,61 +80,61 @@
     </ul>
 </div>
 
-<div class="form-container">
-
-    <!-- form -->
-    <div>
-        <span style="color: black; font-size: 30px; font-weight: 500;">Incident Report</span>
-    </div>
-
-    <form action="{{ url_for('submit_report') }}" method="POST">
-        {{ form.csrf_token }}
-
-        <div class="form-group">
-            <label for="incident_type">Incident Type</label>
-            {{ form.incident_type }}
-        </div>
-        <div class="form-group">
-            <label for="severity">severity</label>
-            {{ form.severity }}
-        </div>
-        <div class="form-group">
-            <label for="date">Date</label>
-            {{ form.date(id="date", class="flatpickr") }}
+<div class="container">
+    <div class="form-container">
+        <!-- form -->
+        <div>
+            <span style="color: black; font-size: 30px; font-weight: 500;">Incident Report</span>
         </div>
 
-        <div class="form-group">
-            <label for="time">Time</label>
-            {{ form.time(id="time", class="flatpickr") }}
-        </div>
+        <form action="{{ url_for('submit_report') }}" method="POST">
+            {{ form.csrf_token }}
 
-        <div class="form-group">
-            <label for="location">Location</label>
-            {{ form.location }}
-        </div>
+            <div class="form-group">
+                <label for="incident_type">Incident Type</label>
+                {{ form.incident_type }}
+            </div>
+            <div class="form-group">
+                <label for="severity">severity</label>
+                {{ form.severity }}
+            </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                {{ form.date(id="date", class="flatpickr") }}
+            </div>
 
-        <div class="form-group">
-            <label for="barangay">Barangay</label>
-            {{ form.barangay }}
-        </div>
+            <div class="form-group">
+                <label for="time">Time</label>
+                {{ form.time(id="time", class="flatpickr") }}
+            </div>
 
-        <div class="form-group">
-            <label for="description">Description</label>
-            {{ form.description }}
-        </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                {{ form.location }}
+            </div>
 
-        <button type="submit">Submit Report</button>
-    </form>
+            <div class="form-group">
+                <label for="barangay">Barangay</label>
+                {{ form.barangay }}
+            </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
-        flatpickr("#date");
-        flatpickr("#time", {
-            enableTime: true,
-            noCalendar: true,
-            dateFormat: "H:i",
-        });
-    </script>
+            <div class="form-group">
+                <label for="description">Description</label>
+                {{ form.description }}
+            </div>
+
+            <button type="submit">Submit Report</button>
+        </form>
+
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script>
+            flatpickr("#date");
+            flatpickr("#time", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });
+        </script>
 </div>
 
 </body>
