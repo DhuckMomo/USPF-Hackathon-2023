@@ -123,13 +123,13 @@
             {{ form.description }}
         </div>
         
-        {% if severity_insights %}
+        <button type="submit">Submit Report</button>
+    </form>
+    {% if severity_insights %}
         <div class="severity-insights">
             <p>{{ severity_insights }}</p>
         </div>
         {% endif %}
-        <button type="submit">Submit Report</button>
-    </form>
     
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
