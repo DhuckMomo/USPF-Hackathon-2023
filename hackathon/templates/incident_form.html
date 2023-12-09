@@ -14,27 +14,40 @@
         }
 
         .navbar {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 15px;
-        }
+    display: flex;
+    flex-direction: column; /* Set direction to column */
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+}
+
+        .navbar ul {
+    list-style: none;
+    display: flex;
+    margin: 1px;
+}
 
         .navbar a {
-            color: white;
+            color: #ffffff;
             padding: 14px 16px;
             text-decoration: none;
             display: inline-block;
+            transition: color 0.3;
         }
+        .navbar a:hover {
+    color: #ff0000; /* Font color on hover */
+}
 
         .navbar h1 {
-            margin-top: 10px;
+            margin-top: 1px;
             text-align: left;
-            display: inline-block;
+            display: block;
         }
 
         .form-container {
-            padding: 20px;
+            padding: 10px;
             text-align: center;
             margin: 0 auto;
         }
@@ -71,8 +84,10 @@
 <div class="navbar">
     <a name="back-to-top"></a>
     <h1>
-        <a href="homepage.html" style="color: white; text-decoration: none;">Incident <span style="color: red;">Report</span></a>
+        <a href="homepage.html" style="color: white; text-decoration: none; display: inline;">Incident <span style="color: red;">Report</span></a>
     </h1>
+    
+
     <ul>
         <li><a href="homepage.html">HOME</a></li>
         <li><a href="report.html">REPORTS</a></li>
